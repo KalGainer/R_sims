@@ -1,0 +1,20 @@
+theWorm <- function(){
+x11()
+x <- seq(-15, 150, length=500)
+newvar = 1
+hx <- dnorm(x, sd=newvar)
+plot(x, hx, type="b", lty=1, xlab="x value",
+     ylab="Density", main="Norm", xlim = c(-5,150))
+
+for(i in 1:1000){
+  dev.flush()
+  lines(x, hx, col = "white", type="b")
+  
+  if((i%%400)<200){newvar <- newvar+(1/70)}
+  else{newvar <- newvar-(1/70)}
+  hx <- dnorm(x,1+i/7, newvar)
+  #Sys.sleep(0.00)
+  lines(x, hx, type="b")
+}
+dev.off()
+}
